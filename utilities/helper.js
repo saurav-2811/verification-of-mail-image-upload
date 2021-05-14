@@ -1,3 +1,5 @@
+
+
 const {NODE_ENV,COOKIE_EXPIRE}=require('../config/index')
 //get token from model,create cookie and send response
 const sendTokenResponse=(user,statusCode,res)=>{
@@ -20,3 +22,7 @@ const sendTokenResponse=(user,statusCode,res)=>{
     })
 }
 module.exports=sendTokenResponse
+
+
+
+

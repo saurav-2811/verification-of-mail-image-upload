@@ -12,4 +12,8 @@ module.exports={
         FROM_EMAIL:process.env.FROM_EMAIL,
         FROM_NAME:process.env.FROM_NAME,
         SERVICE:process.env.SERVICE,
+        AccessKeyID:process.env.AccessKeyID,
+        SecretAccessKey:process.env.SecretAccessKey,
+        region:process.env.region,
+        Bucket:process.env.Bucket,
 }
