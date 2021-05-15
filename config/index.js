@@ -15,5 +15,5 @@ module.exports={
         AccessKeyID:process.env.AccessKeyID,
         SecretAccessKey:process.env.SecretAccessKey,
         region:process.env.region,
-        Bucket:process.env.Bucket,
+        BUCKET:process.env.BUCKET,
 }

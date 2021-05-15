@@ -1,10 +1,12 @@
 const express=require('express')
 const upload =require('../middlewares/multer')
 const {protect}= require('../middlewares/auth')
-const{fileUpload}=require('../controllers/image')
+const{fileUpload,getImg}=require('../controllers/image')
 //initialise router
 const router=express.Router()
-router.post('/',upload,fileUpload)
+router.use(protect)
+router.route('/').post(upload,fileUpload)
+router.route('/:id').get(getImg)
 
 
 module.exports=router

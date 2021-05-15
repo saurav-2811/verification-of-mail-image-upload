@@ -10,10 +10,6 @@ const Userschema = new mongoose.Schema({
     trime: true,
     required: [true,'please add a name']
   },
-  image:{
-    type: String,
-    default: 'no-photo.jpg'
-  },
   email: {
     type: String,
     required: [true, "Please add a email"],

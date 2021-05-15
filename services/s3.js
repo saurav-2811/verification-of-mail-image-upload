@@ -1,20 +1,23 @@
-const fs=require('fs')
-const{AccessKeyID,SecretAccessKey,region,Bucket}= require('../config/index')
-const S3= require('aws-sdk/clients/s3')
-const s3= new S3({
-    AccessKeyID:AccessKeyID,
-    SecretAccessKey:SecretAccessKey,
-    region:region
-  })
+const fs = require("fs");
+const aws = require("aws-sdk");
+const {AccessKeyID,SecretAccessKey,BUCKET,region}=require("../config/index")
+// aws config
+aws.config.update({
+  accessKeyId:AccessKeyID,
+  secretAccessKey:SecretAccessKey,
+});
+aws.config.region = region;
+const s3 = new aws.S3();
+async function uploadFile(file) {
+  const fileStream = fs.createReadStream(file.path);
+  const uploadParams = {
+    Bucket: BUCKET,
+    Body: fileStream,
+    Key: file.filename,
+    acl: "public-read",
+		ContentType: "image/jpeg"
+  };
+  return await s3.upload(uploadParams).promise();
+}
+exports.uploadFile = uploadFile;
 
-  function uploadFile(file){
-      const fileStream=fs.createReadStream(file.path)
-      const uploadParams={
-          Bucket:Bucket,
-          Body:fileStream,
-          Key:file.filename
-      }
-      s3.upload(uploadParams).promise()
-    //   console.log(uploadParams);
-  }
-  exports.uploadFile=uploadFile
