@@ -21,3 +21,14 @@ async function uploadFile(file) {
 }
 exports.uploadFile = uploadFile;
 
+
+
+async function deleteFile(key) {
+  const deleteParams = {
+    Bucket: BUCKET,
+    Key: key
+  };
+  return await s3.deleteObject(deleteParams).promise()
+}
+exports.deleteFile = deleteFile;
+

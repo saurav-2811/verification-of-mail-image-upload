@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
 
 const imageSchema = new mongoose.Schema({
-name:{
+key:{
     type: String,
     default: 'no-photo.jpg'
+},
+url:{
+    type: String,
 },
 user:{
     type:mongoose.Schema.ObjectId,

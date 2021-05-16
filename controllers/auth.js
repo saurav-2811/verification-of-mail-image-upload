@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const asyncHandler = require("../middlewares/async");
 const ErrorResponse = require("../utilities/errorResponse");
-
+const User = require("../models/User")
 const sendTokenResponse = require("../utilities/helper");
 
 const sendEmail = require("../utilities/sendEmail");
@@ -65,6 +65,9 @@ module.exports.sendMail = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.user.email });
   if (!user) {
     return next(new ErrorResponse("user not found", 404));
+  }
+  if(user.verification){
+    return next(new ErrorResponse("already verified", 404));
   }
   const verifyToken = user.genVerifyToken();
   await user.save({ validateBeforeSave: false });
