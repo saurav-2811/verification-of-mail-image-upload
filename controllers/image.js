@@ -28,7 +28,6 @@ module.exports.fileUpload = asyncHandler(async (req, res, next) => {
     if (!result) {
       return next(new ErrorResponse("unable to uload image", 500))
     }
-    console.log(img);
     res.status(200).json({
       success: true,
       data: img
